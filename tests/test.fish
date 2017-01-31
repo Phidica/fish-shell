@@ -27,6 +27,10 @@ set -e ITERM_PROFILE
 source test_util.fish (status -f) $argv; or exit
 
 say -o cyan "Testing high level script functionality"
+if not type -q xxd
+    say red "Tests disabled: `xxd` not found (is vim-common installed?)"
+    exit 0
+end
 
 function test_file
     set -l file $argv[1]
